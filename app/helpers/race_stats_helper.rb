@@ -1,0 +1,2 @@
+module RaceStatsHelper
+end

@@ -1,0 +1,196 @@
+/* リセットCSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* 空白や不要なスペースを削除 */
+:focus {
+  outline: 0;
+}
+
+/* ブラウザのデフォルトスタイルをリセット */
+body, button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* インライン要素が続いたときに生じる余白を削除 */
+a img {
+  border: none;
+}
+
+/* テーブルのセル内余白を削除 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 全体に適用するボックスサイジング */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+
+
+// フラッシュメッセージのスタイル
+.flash {
+  &.notice {
+    background-color: #a6e3a6;
+  }
+  
+  &.alert {
+    background-color: #e3a6a6;
+  }
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f2f2f2;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+
+  .menu {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .horse-list {
+      list-style-type: none;
+
+      li {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+// 入力フォームのスタイル
+form {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="number"]{
+    width: 10%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  input[type="date"] {
+    width: 10%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+// データ表示テーブルのスタイル
+table {
+  width: 30%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+}
+
+header {
+  background-color: #008000;
+  color: #fff;
+  padding:20px;
+  border-bottom: 5px solid #000;
+  font-size: 30px;
+}
+
+
+/* フッター */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #008000;
+  color: #fff;
+  padding: 20px;
+  border-top: 5px solid #000;
+  text-align: center;
+}
+.content {
+  margin-left: 220px; /* サイドメニューの幅 + マージン */
+  padding: 20px;
+  height: 100%; /* サイドメニューの高さに合わせる */
+  overflow: auto; /* メインコンテンツがサイドメニューの高さを超えた場合にスクロールバーを表示 */
+}

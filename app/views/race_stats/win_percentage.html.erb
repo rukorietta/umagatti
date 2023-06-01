@@ -1,0 +1,86 @@
+<!-- ヘッダー -->
+<header>
+  <h1>Uma合致</h1>
+</header>
+
+<div class="container">
+<aside class="sidebar">
+  <!-- サイドメニューの内容 -->
+  <div class="menu">
+    <h3>馬名</h3>
+    <ul class="horse-list">
+      <% @horse_names.each do |horse_name| %>
+        <li><%= horse_name %></li>
+      <% end %>
+    </ul>
+  </div>
+</aside>
+
+<!-- メインコンテンツ -->
+<main>
+   <% flash.each do |key, message| %>
+     <div class="<%= key %>"><%= message %></div>
+   <% end %>
+
+   <h2>データを入力してください</h2>
+    <%= form_with(model: @race_result, url: race_stats_save_data_path, method: :post) do |form| %>
+     
+     <%= render 'error_messages', object: form.object %>
+
+     <%= form.label :race_date, '競走日' %>
+     <%= form.date_field :race_date %>
+
+     <%= form.label :horse_name, '馬名' %>
+     <%= form.text_field :horse_name %>
+
+      <%= form.label :jockey_name, '騎手名' %>
+     <%= form.text_field :jockey_name %>
+
+     <%= form.label :race_name, 'レース名' %>
+     <%= form.text_field :race_name %>
+
+     <%= form.label :position, '着順' %>
+     <%= form.number_field :position %>
+
+     <%= form.submit '保存' %>
+   <% end %>
+   
+   <h1>おおよその勝率</h1>
+   <p>只今の勝率: <%= @percentage %> %</p>
+
+   <h2>保存されたデータ</h2>
+   <% if @race_results.present? %>
+     <table>
+       <thead>
+         <tr>
+           <th>競走日</th>
+           <th>レース名</th>
+           <th>馬名</th>
+           <th>騎手名</th>
+           <th>着順</th>
+         </tr>
+       </thead>
+       <tbody>
+         <% @horse_wins.each do |horse_win| %>
+            <tr>
+              <td><%= horse_win.horse_name %></td>
+              <td><%= horse_win.wins %></td>
+              <td><%= horse_win.race_results_count %></td>
+              <td><%= (horse_win.win_percentage * 100).round(2) %>%</td>
+              <td>
+                <%= button_to '削除', race_stats_delete_data_path(horse_win), method: :delete, data: { confirm: '本当に削除しますか？', horse_name: horse_win.horse_name } %>
+              </td>
+          </tr>
+        <% end %>
+       </tbody>
+     </table>
+   <% else %>
+     <p>保存されたデータはありません。</p>
+   <% end %>
+</main>
+</div>
+<!-- フッター -->
+<footer>
+  © 2023 「Uma合致」制作委員会
+</footer>
+
