@@ -150,6 +150,36 @@ form {
     cursor: pointer;
   }
 }
+.win-percentage {
+  position: absolute;
+  top: 130px; /* ヘッダーの高さに合わせて調整してください */
+  left: 1200px;
+  z-index: 1; /* ヘッダーよりも手前に表示するために z-index を指定します */
+}
+
+.win-percentage-table {
+  width: 50%; /* テーブルの幅を100%に設定します */
+  table-layout: fixed; /* テーブルのレイアウトを固定に設定します */
+  border-collapse: collapse;
+}
+
+.win-percentage-table th,
+.win-percentage-table td {
+  padding: 8px; /* セルのパディングを調整してください */
+  text-align: center; /* セルのテキストを中央に配置します */
+  border: 1px solid #000; 
+}
+
+.win-percentage-table th {
+  background-color: #A5D8FF; /* ヘッダーの背景色を設定します */
+  font-weight: bold; /* ヘッダーのテキストを太字にします */
+  color: #000; /* ヘッダーのテキストの色を設定します */
+}
+
+.win-percentage-table td {
+  background-color: #F5F5F5; /* セルの背景色を設定します */
+  color: #000; /* セルのテキストの色を設定します */
+}
 
 // データ表示テーブルのスタイル
 table {

@@ -5,12 +5,18 @@
 
 <div class="container">
 <aside class="sidebar">
-  <!-- サイドメニューの内容 -->
   <div class="menu">
     <h3>馬名</h3>
     <ul class="horse-list">
       <% @horse_names.each do |horse_name| %>
-        <li><%= horse_name %></li>
+        <li><%= link_to horse_name, race_stats_win_percentage_path(horse_name: horse_name) %></li>
+      <% end %>
+    </ul>
+
+    <h3>騎手名</h3>
+    <ul class="jockey-list">
+      <% @jockey_names.each do |jockey_name| %>
+        <li><%= link_to jockey_name, race_stats_win_percentage_path(jockey_name: jockey_name) %></li>
       <% end %>
     </ul>
   </div>
@@ -44,9 +50,29 @@
 
      <%= form.submit '保存' %>
    <% end %>
-   
-   <h1>おおよその勝率</h1>
-   <p>只今の勝率: <%= @percentage %> %</p>
+   <div class="win-percentage">
+    <h1>勝率</h1>
+    <table class="win-percentage-table">
+        <thead>
+          <tr>
+            <th>馬名</th>
+            <th>出場数</th>
+            <th>勝利数</th>
+            <th>勝率</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @horse_wins.each do |horse_win| %>
+             <tr>
+               <td><%= horse_win.horse_name %></td>
+               <td><%= horse_win.race_results_count %></td>
+               <td><%= horse_win.wins %></td>
+               <td><%= (horse_win.win_percentage ).round %>%</td>
+            </tr>
+          <% end %>
+        </tbody>
+     </table>
+     </div>
 
    <h2>保存されたデータ</h2>
    <% if @race_results.present? %>
@@ -61,15 +87,19 @@
          </tr>
        </thead>
        <tbody>
-         <% @horse_wins.each do |horse_win| %>
+         <% @race_results.each do |race_result| %>
             <tr>
-              <td><%= horse_win.horse_name %></td>
-              <td><%= horse_win.wins %></td>
-              <td><%= horse_win.race_results_count %></td>
-              <td><%= (horse_win.win_percentage * 100).round(2) %>%</td>
-              <td>
-                <%= button_to '削除', race_stats_delete_data_path(horse_win), method: :delete, data: { confirm: '本当に削除しますか？', horse_name: horse_win.horse_name } %>
-              </td>
+             <td><%= race_result.race_date %></td>
+             <td><%= race_result.race_name %></td>
+             <td><%= race_result.horse_name %></td>
+             <td><%= race_result.jockey_name %></td>
+             <td><%= race_result.position %></td>
+            </tr>
+              <td colspan="5">
+                <%= form_with(url: race_stats_delete_data_path(race_result.id), method: :delete, local: true, data: { confirm: '本当に削除しますか？' }) do |form| %>
+                  <%= form.submit '削除', class: 'delete-button' %>
+                <% end %>
+             </td>
           </tr>
         <% end %>
        </tbody>

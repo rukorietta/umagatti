@@ -4,6 +4,7 @@ class RaceStatsController < ApplicationController
     @race_result = RaceResult.new
     @race_results = RaceResult.all.order(race_date: :desc)
     @horse_names = RaceResult.distinct_horse_names
+    @jockey_names = RaceResult.distinct.pluck(:jockey_name) 
   
     @horse_wins = RaceResult.distinct_horse_names.map do |horse_name|
       wins = RaceResult.where(horse_name: horse_name, position: 1).count
