@@ -37,6 +37,24 @@ class RaceStatsController < ApplicationController
     redirect_to race_stats_win_percentage_path, notice: 'データが削除されました。'
   end
 
+  def show_horse_data
+    horse_name = params[:horse_name]
+    @horse_results = RaceResult.where(horse_name: horse_name)
+    # その他の処理...
+
+    render :show_horse_data
+  end
+
+  def show_jockey_data
+    jockey_name = params[:jockey_name]
+    @jockey_results = RaceResult.where(jockey_name: jockey_name)
+    # その他の処理...
+
+    render :show_jockey_data
+  end
+
+  
+
   private
 
   def race_params

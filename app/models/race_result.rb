@@ -24,4 +24,6 @@ class RaceResult < ApplicationRecord
     where(horse_name: horse_name).count
   end
 
+  
+
 end

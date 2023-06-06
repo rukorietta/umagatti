@@ -1,0 +1,26 @@
+<h2><%= @jockey_name %>の騎乗レースデータ</h2>
+
+<% if @jockey_results.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>競走日</th>
+        <th>レース名</th>
+        <th>馬名</th>
+        <th>着順</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jockey_results.each do |result| %>
+        <tr>
+          <td><%= result.race_date %></td>
+          <td><%= result.race_name %></td>
+          <td><%= result.horse_name %></td>
+          <td><%= result.position %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>該当するレースデータはありません。</p>
+<% end %>

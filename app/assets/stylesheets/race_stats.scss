@@ -68,6 +68,11 @@ html {
 }
 
 
+.win-percentage-table-container {
+  max-height: 900px; /* 適切な高さに調整してください */
+  overflow-y: auto;
+  margin-left: 10px;
+}
 
 // フラッシュメッセージのスタイル
 .flash {
@@ -85,6 +90,37 @@ html {
   min-height: 100vh;
 }
 
+ .horse-list {
+      list-style-type: none;
+li {
+     margin-bottom: 5px;
+    font-size: 14px;
+  }
+}
+
+.horse-list a {
+  text-decoration: none; /* 下線を消す */
+  color: inherit; /* 親要素のテキスト色を継承する */
+}
+
+.horse-list a:hover {
+  color: inherit; /* マウスオーバー時も親要素のテキスト色を継承する */
+}
+
+.jockey-list a {
+  text-decoration: none; /* 下線を消す */
+  color: inherit; /* 親要素のテキスト色を継承する */
+}
+
+.jockey-list a:hover {
+  color: inherit; /* マウスオーバー時も親要素のテキスト色を継承する */
+}
+
+header h1 a {
+  text-decoration: none; /* 下線を消す */
+  color: #fff; /* リンクのテキスト色を白に設定 */
+}
+
 .sidebar {
   width: 200px;
   background-color: #f2f2f2;
@@ -99,18 +135,51 @@ html {
       margin-bottom: 10px;
       border-bottom: 1px solid #ccc;
       padding-bottom: 10px;
+      cursor: pointer;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #000;
+        transition: transform 0.3s;
+        transform: rotate(0deg);
+      }
+
+      &.collapsed::after {
+        transform: rotate(-180deg);
+      }
     }
+    
 
-    .horse-list {
-      list-style-type: none;
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s;
 
-      li {
-        margin-bottom: 5px;
-        font-size: 14px;
+      &.collapsed {
+        max-height: none;
       }
     }
   }
 }
+
+.horse-list.collapsed {
+  display: none;
+}
+
+.jockey-list.collapsed {
+  display: none;
+}
+
+
+
 main {
   flex: 1;
   padding: 20px;
@@ -153,12 +222,12 @@ form {
 .win-percentage {
   position: absolute;
   top: 130px; /* ヘッダーの高さに合わせて調整してください */
-  left: 1200px;
+  left: 1300px;
   z-index: 1; /* ヘッダーよりも手前に表示するために z-index を指定します */
 }
 
 .win-percentage-table {
-  width: 50%; /* テーブルの幅を100%に設定します */
+  width: 70%; /* テーブルの幅を100%に設定します */
   table-layout: fixed; /* テーブルのレイアウトを固定に設定します */
   border-collapse: collapse;
 }
@@ -183,7 +252,7 @@ form {
 
 // データ表示テーブルのスタイル
 table {
-  width: 30%;
+  width: 100%;
   border-collapse: collapse;
 
   th,
@@ -205,6 +274,14 @@ header {
   font-size: 30px;
 }
 
+.meal-table{
+  overflow: scroll; /* スクロールする */
+  white-space: nowrap; /* 自動改行しない */
+  width: 900px;
+  height: 500px;
+  padding: 5px;
+  box-sizing: border-box;
+}
 
 /* フッター */
 footer {
