@@ -38,17 +38,20 @@ class RaceStatsController < ApplicationController
   end
 
   def show_horse_data
-    horse_name = params[:horse_name]
-    @horse_results = RaceResult.where(horse_name: horse_name)
-    # その他の処理...
+    @horse_name = params[:horse_name]
+    @horse_results = RaceResult.where(horse_name: @horse_name)
 
-    render :show_horse_data
+    @horse_names = RaceResult.distinct.pluck(:horse_name)
+    @jockey_names = RaceResult.distinct.pluck(:jockey_name)
   end
 
   def show_jockey_data
-    jockey_name = params[:jockey_name]
-    @jockey_results = RaceResult.where(jockey_name: jockey_name)
+    @jockey_name = params[:jockey_name]
+    @jockey_results = RaceResult.where(jockey_name: @jockey_name)
     # その他の処理...
+
+    @horse_names = RaceResult.distinct.pluck(:horse_name)
+    @jockey_names = RaceResult.distinct.pluck(:jockey_name)
 
     render :show_jockey_data
   end

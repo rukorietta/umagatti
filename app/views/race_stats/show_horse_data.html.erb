@@ -1,26 +1,98 @@
-<h2><%= @horse_name %>の出場レースデータ</h2>
+<header>
+  <h1><a href="/">Uma合致</a></h1>
+</header>
 
-<% if @horse_results.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>競走日</th>
-        <th>レース名</th>
-        <th>騎手名</th>
+<div class="container">
+<aside class="sidebar">
+  <div class="menu">
+    <h3 class="toggle-trigger">馬名</h3>
+    <ul class="horse-list collapsed">
+      <% @horse_names.each do |horse_name| %>
+        <li><%= link_to horse_name, race_stats_show_horse_data_path(horse_name: horse_name) %></li>
+      <% end %>
+    </ul>
+
+    <h3 class="toggle-trigger">騎手名</h3>
+    <ul class="jockey-list collapsed">
+      <% @jockey_names.each do |jockey_name| %>
+        <li><%= link_to jockey_name, race_stats_show_jockey_data_path(jockey_name: jockey_name) %></li>
+      <% end %>
+    </ul>
+  </div>
+</aside>
+<main>
+
+  <h2><%= @horse_name %>の出場レースデータ</h2>
+
+  <% if @horse_results.present? %>
+    <table class="race-results-table">
+      <thead>
+        <tr>
+          <th>競走日</th>
+          <th>レース名</th>
+          <th>騎手名</th>
+          <th>着順</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @horse_results.each do |result| %>
+          <tr>
+            <td><%= result.race_date %></td>
+            <td><%= result.race_name %></td>
+            <td><%= result.jockey_name %></td>
+            <td><%= result.position %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>該当するレースデータはありません。</p>
+  <% end %>
+
+    <div class="win-percentage">
+    <h2>3着までの勝利数と確率</h2>
+    <% race_count = @horse_results.size %>
+    <% first_place_count = @horse_results.count { |result| result.position == 1 } %>
+    <% second_place_count = @horse_results.count { |result| result.position == 2 } %>
+    <% third_place_count = @horse_results.count { |result| result.position == 3 } %>
+    <% total_count = first_place_count + second_place_count + third_place_count %>
+    <% win_percentage = (first_place_count.to_f / race_count * 100).round %>
+    <% second_place_percentage = (second_place_count.to_f / race_count * 100).round %>
+    <% third_place_percentage = (third_place_count.to_f / race_count * 100).round %>
+    <table class="placement-percentage-table">
+      <thead>
+        <tr>
         <th>着順</th>
+        <th>出走数</th>
+        <th>勝利数</th>
+        <th>確率</th>
       </tr>
     </thead>
     <tbody>
-      <% @horse_results.each do |result| %>
-        <tr>
-          <td><%= result.race_date %></td>
-          <td><%= result.race_name %></td>
-          <td><%= result.jockey_name %></td>
-          <td><%= result.position %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td>1着</td>
+        <td><%= race_count %></td>
+        <td><%= first_place_count %></td>
+        <td><%= win_percentage %>%</td>
+      </tr>
+      <tr>
+        <td>2着</td>
+        <td><%= race_count %></td>
+        <td><%= second_place_count %></td>
+        <td><%= second_place_percentage %>%</td>
+      </tr>
+      <tr>
+        <td>3着</td>
+        <td><%= race_count %></td>
+        <td><%= third_place_count %></td>
+        <td><%= third_place_percentage %>%</td>
+      </tr>
     </tbody>
   </table>
-<% else %>
-  <p>該当するレースデータはありません。</p>
-<% end %>
+ </div>
+</main>
+</div>
+
+<footer>
+  © 2023 「Uma合致」制作委員会
+</footer>
