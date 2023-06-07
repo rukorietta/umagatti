@@ -74,17 +74,6 @@ html {
   margin-left: 10px;
 }
 
-// フラッシュメッセージのスタイル
-.flash {
-  &.notice {
-    background-color: #a6e3a6;
-  }
-  
-  &.alert {
-    background-color: #e3a6a6;
-  }
-}
-
 .container {
   display: flex;
   min-height: 100vh;
@@ -358,4 +347,17 @@ table.race-results-table tr:hover {
 
 .back-button:hover {
   background-color: #c0392b;
+}
+
+#error_explanation {
+  color: red;
+  font-weight: bold;
+}
+#error_explanation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#error_explanation li {
+  color: red;
 }

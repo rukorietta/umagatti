@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
-  <div class="error-messages">
-    <h3>エラーが発生しました。</h3>
+  <div id="error_explanation">
+    <h3>下記のエラーが発生しました:</h3>
     <ul>
       <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>

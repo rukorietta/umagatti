@@ -28,11 +28,11 @@
      <div class="<%= key %>"><%= message %></div>
    <% end %>
 
-   <h2>データを入力してください</h2>
     <%= form_with(model: @race_result, url: race_stats_save_data_path, method: :post) do |form| %>
      
      <%= render 'error_messages', object: form.object %>
-
+     
+     <h2>データを入力してください</h2>
      <%= form.label :race_date, '競走日' %>
      <%= form.date_field :race_date, id: 'race-date-field' %>
 

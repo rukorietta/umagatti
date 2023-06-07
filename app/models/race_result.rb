@@ -1,5 +1,5 @@
 class RaceResult < ApplicationRecord
-  validates :race_date, :horse_name, :position, :jockey_name, :race_name, presence: true
+  validates :race_date, :horse_name, :jockey_name, :race_name, :position, presence: true
 
   def self.distinct_horse_names
     pluck(:horse_name).uniq

@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      race_result:
+        race_date: 競争日
+        horse_name: 馬名
+        position: 着順
+        jockey_name: 騎手名
+        race_name: レース名
