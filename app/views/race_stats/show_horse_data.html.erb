@@ -32,6 +32,7 @@
           <th>レース名</th>
           <th>騎手名</th>
           <th>着順</th>
+          <th>削除機能</th>
         </tr>
       </thead>
       <tbody>
@@ -41,6 +42,11 @@
             <td><%= result.race_name %></td>
             <td><%= result.jockey_name %></td>
             <td><%= result.position %></td>
+            <td>
+              <%= form_with(url: race_stats_delete_data_path(result.id), method: :delete, local: true, data: { confirm: '本当に削除しますか？' }) do |form| %>
+              <%= form.submit '削除', class: 'delete-button' %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -48,6 +54,8 @@
   <% else %>
     <p>該当するレースデータはありません。</p>
   <% end %>
+
+   <%= link_to "トップページに戻る", root_path, class: "back-button" %>
 
     <div class="win-percentage">
     <h2>3着までの勝利数と確率</h2>
