@@ -34,19 +34,17 @@ https://docs.google.com/spreadsheets/d/1mFpl1dGNE48ctb-Kas-waS-m4sWmxH8r6hseakTX
 1.ユーザー機能(ログイン・ログアウト)を追加する<br>
 2.ログイン中はコメントが打てるようにする<br>
 
-# データベース設計
+# テーブル設計
 
-+----------------+
-  | race_results   |
-  +----------------+
-  | race_date      |
-  | horse_name     |
-  | position       |
-  | jockey_name    |
-  | race_name      |
-  | created_at     |
-  | updated_at     |
-  +----------------+
+## race_results テーブル
+
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| race_date          | date    | null: false |
+| horse_name         | string  | null: false |
+| jockey_name        | string  | null: false |
+| race_name          | string  | null: false |
+| position           | integer | null: false |
 
 # 画面遷移図
 

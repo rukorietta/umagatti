@@ -12,12 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2023_05_30_090334) do
 
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "race_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "race_date"
-    t.string "horse_name"
-    t.integer "position"
-    t.string "jockey_name"
-    t.string "race_name"
+    t.date "race_date", null: false
+    t.string "horse_name", null: false
+    t.integer "position", null: false
+    t.string "jockey_name", null: false
+    t.string "race_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
