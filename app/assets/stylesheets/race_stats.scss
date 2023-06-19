@@ -261,6 +261,14 @@ header {
   padding:20px;
   border-bottom: 5px solid #000;
   font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .meal-table{
