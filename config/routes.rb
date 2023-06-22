@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    get '/users/sign_out', to: 'devise/sessions#destroy'
+  end
   get '/race_stats/win_percentage', to: 'race_stats#win_percentage', as: 'race_stats_win_percentage'
   root to: 'race_stats#win_percentage'  # ルートを勝率表示に設定
   post 'race_stats/save_data', to: 'race_stats#save_data', as: 'race_stats_save_data'
