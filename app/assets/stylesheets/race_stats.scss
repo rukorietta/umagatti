@@ -369,3 +369,8 @@ table.race-results-table tr:hover {
 #error_explanation li {
   color: red;
 }
+
+header a {
+  text-decoration: none; /* 下線をなくす */
+  color: #fff; /* テキストを白色にする */
+}
