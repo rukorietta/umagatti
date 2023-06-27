@@ -1,4 +1,6 @@
 class RaceStatsController < ApplicationController
+  before_action :authenticate_user!, only: [:save_data]
+
   def win_percentage
     @percentage = RaceResult.win_percentage
     @race_result = RaceResult.new
